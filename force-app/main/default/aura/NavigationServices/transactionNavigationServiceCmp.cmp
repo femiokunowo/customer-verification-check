@@ -1,0 +1,28 @@
+<!--
+Description:    A reusable Lightning Component that can be embedded in any CRV Lightning Component 
+    to generate the deep link URL
+Attributes:     transactionId – The enterprise transaction ID for the servicing workflow
+                ECN – Enterprise Customer Number
+Event Handlers: None
+-->
+
+<aura:component implements="lightning:isUrlAddressable" controller="TransactionNavigationServiceCC">
+        
+    <!--servicing workflow specific attributes  -->
+    <aura:attribute name="transactionId" type="String" />
+    <aura:attribute name="ECN" type="String" />	   
+    
+    <!-- attributes used for business logic within Navigation Services Component  -->     
+    <aura:attribute name="navigationUrl" type="String" access="public" />
+    <aura:attribute name="pageReference" type="Object" access="public"/>   
+    
+    <!-- add handler event    -->
+    <aura:handler name="init" value="{!this}" action="{!c.getWorkflowUrl}" />   
+   
+    <!-- Navigation to the service workflow -->
+    <lightning:navigation aura:id="navigationService"/>
+    <a href="{!v.navigationUrl}" target="_blank" >{!v.navigationUrl}</a>
+    <br/>
+    <lightning:button label="Navigate" onclick="{!c.navigationHandler}"/>
+  
+</aura:component>
