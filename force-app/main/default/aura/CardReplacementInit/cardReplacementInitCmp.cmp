@@ -1,0 +1,23 @@
+<!--
+Description:    A servicing workflow component for the card replacement
+Attributes:     transactionId – The enterprise transaction ID for the servicing workflow
+                ECN – Enterprise Customer Number
+Event Handlers: None
+-->
+
+<aura:component implements="force:lightningQuickAction,force:hasRecordId,lightning:isUrlAddressable">
+	
+    <!-- set the component attribute   -->    
+    
+    <aura:attribute name="transactionId" type="String" default="TR0001" />
+    <aura:attribute name="ECN" type="String" default="1471599"/> <!-- should be obtained from customer record --> 
+    <aura:attribute name="diplayUrl" type="String" />     
+
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />  
+   
+    <!--Reference the TransactionNavigationService component -->
+    <c:transactionNavigationServiceCmp aura:id="navigationServiceCmp" transactionId="{!v.transactionId}"/>   
+    
+       
+    
+</aura:component>
