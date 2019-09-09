@@ -1,14 +1,20 @@
 ({
 	
-    init : function(component, event, helper) {
-		
-        //TODO: other business logic can be placed here before navigating to the servicing workflow
+    doInit : function(component, event, helper) {
         
+        //TODO: check that authentication is successful before calling transaction navigation service below
         
-        //var pageReference = component.find("navigationServiceCmp").get("v.pageReference");
-        //console.log("Page Reference: " + pageReference);
-        //component.find("navigationServiceCmp").navigationHandler(); 
-             
-       
+        var transNavService = component.find("transNavigationServiceCmp");
+        transNavService.getServicingWorkflowUrl(component.get("v.transactionId"), 
+                                                component.get("v.ECN"));  
+                                                
+        //TODO: Other Servicing Workflow specific business logic can be added here before calling the doNavigate() method
+         
+        // call doNavigate
+        var dismissActionPanel = $A.get("e.force:closeQuickAction");
+        dismissActionPanel.fire();
+        
+        transNavService.doNavigate();
+
 	}   
 })

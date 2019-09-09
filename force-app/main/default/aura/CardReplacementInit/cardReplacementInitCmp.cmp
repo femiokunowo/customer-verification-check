@@ -11,9 +11,12 @@ Event Handlers: None
     
     <aura:attribute name="transactionId" type="String" default="TR0001" />
     <aura:attribute name="ECN" type="String" default="1471599"/> <!-- should be obtained from customer record --> 
-    <aura:attribute name="diplayUrl" type="String" />     
+ 
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
-    <aura:handler name="init" value="{!this}" action="{!c.init}" />  
+    <!--Call the authentication service -->
+    <c:EAT_CustomerAuthentication aura:id="customerAuthenticator" />
    
     <!--Reference the TransactionNavigationService component -->
     <c:transactionNavigationServiceCmp aura:id="navigationServiceCmp" transactionId="{!v.transactionId}"/>   
