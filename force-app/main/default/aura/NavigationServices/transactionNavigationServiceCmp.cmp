@@ -14,15 +14,19 @@ Event Handlers: None
     
     <!-- attributes used for business logic within Navigation Services Component  -->     
     <aura:attribute name="navigationUrl" type="String" access="public" />
-    <aura:attribute name="pageReference" type="Object" access="public"/>   
+
+    <aura:method name="getServicingWorkflowUrl" description="Get target URL of servicing workflow">
+        <aura:attribute name="transactionId" type="String" />
+        <aura:attribute name="ECN" type="String" />	
+    </aura:method>
+
+    <aura:method name="doNavigate" description="Navigation Handler for Servicing Workflow">       
+    </aura:method>
     
     <!-- add handler event    -->
-    <aura:handler name="init" value="{!this}" action="{!c.getWorkflowUrl}" />   
-   
-    <!-- Navigation to the service workflow -->
-    <lightning:navigation aura:id="navigationService"/>
+    <aura:handler name="init" value="{!this}" action="{!c.getWorkflowUrl}" />     
     <a href="{!v.navigationUrl}" target="_blank" >{!v.navigationUrl}</a>
     <br/>
-    <lightning:button label="Navigate" onclick="{!c.navigationHandler}"/>
+ 
   
 </aura:component>
